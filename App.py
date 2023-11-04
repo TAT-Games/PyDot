@@ -15,6 +15,13 @@ class Player(Node):
 
     def attack(self, damage: int) -> None:
         print(f"Attack: {damage}")
+    
+    
+    def _process(self, delta: float):
+        if Input.is_key_pressed(K_UP):
+            print("Up Arrow pressed")
+        
+        
 
 
 class Level1(Node):
@@ -35,8 +42,8 @@ class Level2(Node):
         player = Player.new()
         player.name = "Player 2"
         self.add_node(player)
-        print(self.get_child(0))
-        self.set_process(False)
+        # print(self.get_child(0))
+        # self.set_process(False)
         self.set_physics_process(False)
         
 

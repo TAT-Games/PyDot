@@ -42,7 +42,7 @@ class Node(Object):
     
     def _ready(self):
         """Called when the node is ready"""
-        print(f"{self.name} is ready")
+        # print(f"{self.name} is ready")
     
     
     def _process(self, delta: float):
@@ -50,7 +50,7 @@ class Node(Object):
         if not self.__can_process:
             return
         
-        print(f"{self.name}: Process")
+        # print(f"{self.name}: Process")
         children = self.get_children()
         for node in children:
             node._process(delta)
@@ -61,7 +61,7 @@ class Node(Object):
         if not self.__can_physics_process:
             return
         
-        print(f"{self.name}: Physics Process, {delta}")
+        # print(f"{self.name}: Physics Process, {delta}")
         children = self.get_children()
         for node in children:
             node._physics_process(delta)
