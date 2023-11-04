@@ -1,6 +1,9 @@
 from pygame import Color
 
-def printErr(text: str, ErrorType: str = "ERROR"):
+def printErr(error: str, ErrorType: str = "ERROR", help: str = ""):
     """Print an error to the terminal"""
-    print(f"{ErrorType}: {text}")
+    print(f"\n{ErrorType}: {error}")
+    if help != "":
+        print(f"> Help: {help}")
+        
     quit()
