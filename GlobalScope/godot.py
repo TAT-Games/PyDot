@@ -3,10 +3,11 @@ sys.path.append(".")
 
 from MyLib import  Vector2, singleton
 from pygame.locals import *
-from scene import Scene
-from functions import Color, printErr
-from sceneTree import SceneTree
-from texture import Texture
+
+from GlobalScope.scene import Scene
+from GlobalScope.functions import Color, printErr
+from GlobalScope.sceneTree import SceneTree
+from GlobalScope.texture import Texture
 
 
 @singleton

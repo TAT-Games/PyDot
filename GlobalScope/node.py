@@ -1,4 +1,4 @@
-from object import Object
+from GlobalScope.object import Object
 
 
 class Node(Object):

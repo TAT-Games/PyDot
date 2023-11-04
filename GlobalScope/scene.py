@@ -1,4 +1,5 @@
-from node import Node
+from GlobalScope.node import Node
+
 
 class Scene(Node):
     "A scene"

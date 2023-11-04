@@ -1,4 +1,4 @@
-from object import Object
+from GlobalScope.object import Object
 from pygame import image
 from pygame import Surface
 
