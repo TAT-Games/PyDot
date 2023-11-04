@@ -1,5 +1,5 @@
 import sys; sys.path.append(".")
-from pygame import Event, KEYDOWN, KEYUP
+from pygame import Event, KEYDOWN, MOUSEBUTTONDOWN
 from GlobalScope.singleton import singleton
 
 @singleton
@@ -27,13 +27,13 @@ class Input:
         return False
     
     
-    def is_key_released(self, key: int) -> bool:
-        """Checks if the key is released"""
+    def is_mouse_button_pressed(self, button: int) -> bool:
+        """Checks whether a mouse button is pressed."""
         if self.__current_event == None:
-            return True
+            return False
         
-        if self.__current_event.type == KEYDOWN:
-            if self.__current_event.key == key:
-                return False
+        if self.__current_event.type == MOUSEBUTTONDOWN:
+            if self.__current_event.button == button:
+                return True
         
-        return True
+        return False

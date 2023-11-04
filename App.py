@@ -21,9 +21,10 @@ class Player(Node):
         if Input.is_key_pressed(K_UP):
             print("Up Arrow pressed")
         
+        if Input.is_mouse_button_pressed(BUTTON_LEFT):
+            print("Mouse button pressed")
         
-
-
+        
 class Level1(Node):
     def __init__(self) -> None:
         super().__init__()
@@ -34,7 +35,6 @@ class Level1(Node):
         time: float = 0.0
        
         
-    
 class Level2(Node):
     def __init__(self) -> None:
         super().__init__()
@@ -46,7 +46,6 @@ class Level2(Node):
         # self.set_process(False)
         self.set_physics_process(False)
         
-
 
 world_instance = Level2.new().to_scene()
 

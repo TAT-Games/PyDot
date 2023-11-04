@@ -112,7 +112,7 @@ class Godot:
         new_time: float 
         delta: float
         clock = pygame.Clock()
-        input_event_types: list = [KEYDOWN, KEYUP, MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
+        input_singleton_types: list = [KEYDOWN, KEYUP, MOUSEBUTTONDOWN, MOUSEBUTTONUP]
         while self.__running:
             clock.tick(self.__fps)
             new_time = time()
@@ -122,7 +122,7 @@ class Godot:
                 if event.type == QUIT:
                     self.__running = False
                 
-                if event.type in input_event_types:
+                if event.type in input_singleton_types:
                     _ip._update_event(event)
             
             self.__screen.fill(self.__background_colour)
@@ -141,4 +141,3 @@ class Godot:
     #     modifier =  event.mod
     #     if (key, modifier) in self.shortcuts:
     #         exec(self.shortcuts[key, modifier])
-
