@@ -1,5 +1,5 @@
+import sys; sys.path.append(".")
 from GlobalScope.node import Node
-
 
 class Scene(Node):
     "A scene"

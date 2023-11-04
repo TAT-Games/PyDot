@@ -1,5 +1,5 @@
-import sys, pygame
-sys.path.append(".")
+import sys; sys.path.append(".")
+import pygame
 
 from MyLib import  Vector2, singleton
 from pygame.locals import *

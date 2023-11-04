@@ -1,5 +1,4 @@
-import sys
-sys.path.append(".")
+import sys; sys.path.append(".")
 
 from GlobalScope.scene import Scene
 from GlobalScope.functions import printErr
