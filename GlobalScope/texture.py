@@ -1,3 +1,5 @@
+import sys; sys.path.append(".")
+
 from GlobalScope.object import Object
 from pygame import image
 from pygame import Surface
