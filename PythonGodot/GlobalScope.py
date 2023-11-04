@@ -9,7 +9,7 @@ from MyLib import *
 # VARIABLES
 Null: None = None # SIDE EFFECT: Deleting or removing this variable will affect the whole project
 
-
+# Message
 # FUNCTIONS
 def printErr(text: str, ErrorType: str = "ERROR"):
     """Print an error to the terminal"""
