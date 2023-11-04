@@ -187,6 +187,7 @@ class Godot:
         self.__window_title: str = "Godot Python Project (Debug)"
         self.__icon: Texture = Texture("icon.png")
         self.__background_colour: Color = Color("grey")
+        self.__main_scene: Scene = None
     
     
     def init(self):
@@ -216,17 +217,29 @@ class Godot:
         pygame.display.set_icon(icon.get_data())
 
 
+    def set_background_color(self, color: str):
+        """Sets the background Color"""
+        self.__background_colour = Color(color)
+    
+    
+    def set_main_scene(self, scene: Scene):
+        """Sets the main scene"""
+        self.__main_scene = scene
+    
+
     def get_window_size(self) -> Vector2:
         """Returns the window/screen size as a vector2 object"""
         return self.__window_size
     
     
-    def set_background_color(self, color: str):
-        self.__background_colour = Color(color)
-    
-
     def run(self):
         """Run the main loop"""
+        if self.__main_scene == None:
+            printErr("No Main Scene Set", "GodotError" )
+        
+        else:
+            SceneTree.change_current_scene(self.__main_scene)
+            
         while self.__running:
             for event in pygame.event.get():
                 if event.type == QUIT:

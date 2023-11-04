@@ -15,24 +15,19 @@ class Player(Node):
     def attack(self, damage: int) -> None:
         print(f"Attack: {damage}")
 
- 
-main_scene = Scene()
-some_node = Node.new()
-some_node.name = "Arthur"
-main_scene.add_node(some_node)
-main_scene.add_node(Node())
-main_scene.add_node(Node.new())
 
-
-SceneTree.change_current_scene(main_scene)
-
+class World(Scene):
+    def __init__(self) -> None:
+        super().__init__()
+        player = Player.new()
+        self.add_node(player)
+        
 
 
 def main():
+    Godot.set_main_scene(World.new())
     Godot.run()
     
 
-
 if __name__ == "__main__":
     main()
-
