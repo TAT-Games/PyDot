@@ -1,6 +1,5 @@
-import GlobalScope
-from MyLib import *
-from GlobalScope import *
+import sys; sys.path.append(".")
+from __init__ import *
 
 Godot.init()
 

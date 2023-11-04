@@ -1,0 +1,1 @@
+from GlobalScope import  *

@@ -1,7 +1,6 @@
 import sys; sys.path.append(".")
 import pygame
 
-from MyLib import  Vector2, singleton
 from pygame.locals import *
 from time import time
 
@@ -9,6 +8,8 @@ from GlobalScope.node import Node
 from GlobalScope.functions import Color, printErr
 from GlobalScope.sceneTree import SceneTree as _st
 from GlobalScope.texture import Texture
+from GlobalScope.singleton import singleton
+from GlobalScope.vector2 import Vector2
 
 
 @singleton

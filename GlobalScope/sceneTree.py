@@ -2,7 +2,7 @@ import sys; sys.path.append(".")
 
 from GlobalScope.node import Node
 from GlobalScope.functions import printErr
-from MyLib import singleton
+from GlobalScope.singleton import singleton
 
 
 @singleton
