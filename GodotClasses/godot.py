@@ -1,38 +1,14 @@
 import sys, pygame
 sys.path.append(".")
+
+from MyLib import  Vector2, singleton
 from pygame.locals import *
-from pygame import Color
-from MyLib import *
-from Object import Object
-from Scene import Scene
-from Functions import *
-from SceneTree import SceneTree
-
-# enums
-
-# VARIABLES
-Null: None = None # SIDE EFFECT: Deleting or removing this variable will affect the whole project
+from scene import Scene
+from functions import Color, printErr
+from sceneTree import SceneTree
+from texture import Texture
 
 
-# FUNCTIONS
-
-
-
-# OBJECTS
-
-class Texture(Object):
-    """A base class for textures used in the game"""
-    def __init__(self, filepath: str):
-        self.data =  pygame.image.load(filepath)
-        
-   
-    def get_data(self) -> pygame.Surface:
-        """Returns the image data as a pygame surface"""
-        return self.data
-
-
-# SINGLETONS
-    
 @singleton
 class Godot:
     """Create a single-window application with multiple scenes"""
@@ -137,16 +113,3 @@ class Godot:
         """Toggle between frame and no-frame window."""
         self.__flags = NOFRAME
         pygame.display.set_mode(self.__window_size, self.__flags)
-
-
-
-    
-
-def main():
-    texture = Texture("icon.png")
-    print(Color("Blue"))
-    print(Vector2(0,0))
-    print(Vector2(-1, 0))
-
-if __name__ == "__main__":
-    main()

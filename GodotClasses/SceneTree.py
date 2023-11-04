@@ -1,8 +1,9 @@
 import sys
+sys.path.append(".")
 
-from GlobalScope import Scene
-from GlobalScope import singleton
-from GlobalScope import printErr
+from scene import Scene
+from functions import printErr
+from MyLib import singleton
 
 
 @singleton
