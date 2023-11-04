@@ -63,13 +63,11 @@ class Godot:
     
     def set_main_scene(self, scene: Node):
         """Sets the main scene"""
-        if scene.owner != scene:
-            print(scene.owner)
-            print(scene)
-            printErr("Invalid scene", "GodotError", "Use the @Scene decorator to turn node to a scene")
-        
-        else:
+        if scene.owner == scene and scene.__is_scene:
             self.__main_scene = scene
+
+        else:
+            printErr("Invalid scene", "GodotError", "Use the @Scene decorator to turn node to a scene")
     
 
     def get_window_size(self) -> Vector2:
