@@ -10,3 +10,5 @@ from .singleton import singleton
 from .vector2 import Vector2
 from .input import Input
 
+version: float = 0.2
+print(f"PyDot {version}")
