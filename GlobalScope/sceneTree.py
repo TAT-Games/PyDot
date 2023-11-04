@@ -10,8 +10,21 @@ class SceneTree:
     """Manages the current scene"""
     def __init__(self) -> None:
         self.__current_scene: 'Node' = None
+      
         
+    def __del__(self):
+        self.__current_scene._exit_tree()
 
+
+    def _process(self, delta: float):
+        if self.__current_scene  != None:
+            self.__current_scene._process(delta)
+            self.__current_scene._physics_process(delta)
+            
+        else:
+            printErr("No Current scene set.", "SceneTree")
+    
+    
     def get_current_scene(self):
         """Gets the current scene"""
         return self.__current_scene
@@ -27,12 +40,3 @@ class SceneTree:
         
         else:
             printErr("Invalid Scene", "SceneTree Error", "Use the Scene() function to transform a node to a scene")
-
-
-    def _process(self, delta: float):
-        if self.__current_scene  != None:
-            self.__current_scene._process(delta)
-            self.__current_scene._physics_process(delta)
-            
-        else:
-            printErr("No Current scene set.", "SceneTree")

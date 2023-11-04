@@ -47,8 +47,7 @@ class Node(Object):
         print(f"{self.name}: Process")
         children = self.get_children()
         for node in children:
-            if node in self.__children:
-                node._process(delta)
+            node._process(delta)
 
     
     def _physics_process(self, delta: float):
@@ -56,8 +55,7 @@ class Node(Object):
         print(f"{self.name}: Physics Process, {delta}")
         children = self.get_children()
         for node in children:
-            if node in self.__children:
-                node._physics_process(delta)
+            node._physics_process(delta)
         
     
     def add_node(self, node: 'Node'):
