@@ -1,5 +1,9 @@
+from os import remove
 import sys; sys.path.append(".")
+
+# from GlobalScope.scene import Scene
 from GlobalScope.object import Object
+
 
 
 class Node(Object):
@@ -10,6 +14,7 @@ class Node(Object):
         self.__children: dict = {}
         self.name = "Node"
         self.__parent: Node = None
+        self.owner: Node = None
         
     
     def _enter_tree(self):
@@ -17,6 +22,7 @@ class Node(Object):
         print(f"{self.name} is entering tree")
         children: list = self.get_children()
         for child in children:
+            child.owner = self.owner
             child._enter_tree()
         
         for child in children:
@@ -36,7 +42,6 @@ class Node(Object):
     def _ready(self):
         """Called when the node is ready"""
         print(f"{self.name} is ready")
-        pass
     
     
     def _process(self, delta: float):
@@ -57,6 +62,28 @@ class Node(Object):
                 node._physics_process(delta)
         
     
+
+    def add_node(self, node: 'Node'):
+        """Adds to children"""
+        if node.name in self.__children and node != self.__children[node.name]:
+            node.name += str(len(self.__children) - 1)
+            
+        self.__children[node.name] = node
+        node.__parent = self
+        if self.owner != None:
+            node.owner = self.owner
+            node._enter_tree()
+    
+    
+    def remove_node(self, node: 'Node'):
+        """Remove node from children"""
+        self.__children.pop(node.name)
+        node.__parent = None
+        if self.owner != None:
+            node.owner = None
+            node._exit_tree()
+    
+    
     def get_node(self, node_name: str):
         """Used to get a node from the __children"""
         children = self.get_children()
@@ -65,11 +92,6 @@ class Node(Object):
         
         else:
             return None
-    
-    
-    def get_parent(self):
-        """Gets the node's parent"""
-        return self.__parent
 
 
     def get_children(self):
@@ -81,25 +103,13 @@ class Node(Object):
         return children
     
     
-    def add_node(self, node: 'Node'):
-        """Adds to children"""
-        if node.name in self.__children and node != self.__children[node.name]:
-            node.name += str(len(self.__children) - 1)
-            
-        self.__children[node.name] = node
-        node.__parent = self
-        node._enter_tree()
-    
-    
-    def remove_node(self, node: 'Node'):
-        """Remove node from children"""
-        self.__children.pop(node.name)
-        node.__parent = None
-        node._exit_tree()
+    def get_parent(self):
+        """Gets the node's parent"""
+        return self.__parent
     
     
     def queue_free(self):
         self.__parent = None
         children = self.get_children()
         for node in children:
-            node.queue_free()
+            self.remove_node(node)

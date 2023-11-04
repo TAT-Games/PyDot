@@ -1,3 +1,4 @@
+import GlobalScope
 from MyLib import *
 from GlobalScope import *
 
@@ -5,6 +6,7 @@ Godot.init()
 
 Godot.set_window_size(Vector2(500, 400))
 Godot.set_background_color("grey")
+
 
 
 class Player(Node):
@@ -17,16 +19,17 @@ class Player(Node):
         print(f"Attack: {damage}")
 
 
-class World(Scene):
+class World(Node):
     def __init__(self) -> None:
         super().__init__()
         player = Player.new()
         self.add_node(player)
         
-
+world_instance = World.new()
+Scene(world_instance)
 
 def main():
-    Godot.set_main_scene(World.new())
+    Godot.set_main_scene(world_instance)
     Godot.run()
     
 

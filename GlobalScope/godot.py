@@ -1,10 +1,11 @@
-import sys; sys.path.append(".")
+import sys
+
+from GlobalScope.node import Node; sys.path.append(".")
 import pygame
 
 from MyLib import  Vector2, singleton
 from pygame.locals import *
 
-from GlobalScope.scene import Scene
 from GlobalScope.functions import Color, printErr
 from GlobalScope.sceneTree import SceneTree
 from GlobalScope.texture import Texture
@@ -19,7 +20,7 @@ class Godot:
         self.__window_title: str = "Godot Python Project (Debug)"
         self.__icon: Texture = Texture("icon.png")
         self.__background_colour: Color = Color("grey")
-        self.__main_scene: Scene = None
+        self.__main_scene: Node = None
     
     
     def init(self):
@@ -54,9 +55,15 @@ class Godot:
         self.__background_colour = Color(color)
     
     
-    def set_main_scene(self, scene: Scene):
+    def set_main_scene(self, scene: Node):
         """Sets the main scene"""
-        self.__main_scene = scene
+        if scene.owner != scene:
+            print(scene.owner)
+            print(scene)
+            printErr("Invalid scene", "GodotError", "Use the @Scene decorator to turn node to a scene")
+        
+        else:
+            self.__main_scene = scene
     
 
     def get_window_size(self) -> Vector2:

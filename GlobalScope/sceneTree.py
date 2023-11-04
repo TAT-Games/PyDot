@@ -1,6 +1,6 @@
 import sys; sys.path.append(".")
 
-from GlobalScope.scene import Scene
+from GlobalScope.node import Node
 from GlobalScope.functions import printErr
 from MyLib import singleton
 
@@ -9,7 +9,7 @@ from MyLib import singleton
 class SceneTree:
     """Manages the current scene"""
     def __init__(self) -> None:
-        self.current_scene: Scene  = None
+        self.current_scene: Node  = None
         
 
     def get_current_scene(self):
@@ -17,7 +17,7 @@ class SceneTree:
         return self.current_scene
 
     
-    def change_current_scene(self, scene: 'Scene'):
+    def change_current_scene(self, scene: Node):
         """Changes the current scene"""
         self.current_scene = scene
         
