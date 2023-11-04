@@ -10,6 +10,7 @@ from GlobalScope.sceneTree import SceneTree as _st
 from GlobalScope.texture import Texture
 from GlobalScope.singleton import singleton
 from GlobalScope.vector2 import Vector2
+from GlobalScope.input import Input as _ip
 
 
 @singleton
@@ -111,6 +112,7 @@ class Godot:
         new_time: float 
         delta: float
         clock = pygame.Clock()
+        input_event_types: list = [KEYDOWN, KEYUP, MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
         while self.__running:
             clock.tick(self.__fps)
             new_time = time()
@@ -120,8 +122,8 @@ class Godot:
                 if event.type == QUIT:
                     self.__running = False
                 
-                if event.type == KEYDOWN:
-                    pass
+                if event.type in input_event_types:
+                    _ip._update_event(event)
             
             self.__screen.fill(self.__background_colour)
             
