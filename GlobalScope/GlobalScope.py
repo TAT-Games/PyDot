@@ -6,7 +6,7 @@ from MyLib import *
 
 # enums
 
-
+# 
 
 # OBJECTS
 class Object:
@@ -151,7 +151,7 @@ class Godot:
         self.__flags: int = 0
         self.__window_size: Vector2 = Vector2(500, 500)
         self.__window_title: str = "Godot Python Project (Debug)"
-        self.__icon: Texture = Texture("icon.png")
+        self.__icon: Texture = Texture("GlobalScope/icon.png")
         self.__background_colour: Color = Color("grey")
     
     
