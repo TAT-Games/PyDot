@@ -1,5 +1,6 @@
 import sys; sys.path.append(".")
 
+from GlobalScope.functions import printErr
 from GlobalScope.object import Object
 
 
@@ -96,6 +97,15 @@ class Node(Object):
             children.append(node)
         
         return children
+    
+    
+    def get_child(self, index: int):
+        """Returns a child from the specified index"""
+        children = self.get_children()
+        if index + 1 > len(children):
+            printErr("Child Index is out of range", "IndexError", "Try a lower number when getting child")
+        
+        return children[index]
     
     
     def get_parent(self) -> 'Node':

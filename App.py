@@ -36,9 +36,11 @@ class Level2(Node):
         player = Player.new()
         player.name = "Player 2"
         self.add_node(player)
+        print(self.get_child(0))
+        
 
 
-world_instance = Level1.new().to_scene()
+world_instance = Level2.new().to_scene()
 
 
 def main():

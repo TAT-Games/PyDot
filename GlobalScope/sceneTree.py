@@ -13,7 +13,8 @@ class SceneTree:
       
         
     def __del__(self):
-        self.__current_scene._exit_tree()
+        if self.__current_scene != None:
+            self.__current_scene._exit_tree()
 
 
     def _process(self, delta: float):
