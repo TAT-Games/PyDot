@@ -1,11 +1,11 @@
-import sys
-
-from GlobalScope.node import Node; sys.path.append(".")
+import sys; sys.path.append(".")
 import pygame
 
 from MyLib import  Vector2, singleton
 from pygame.locals import *
+from time import time
 
+from GlobalScope.node import Node
 from GlobalScope.functions import Color, printErr
 from GlobalScope.sceneTree import SceneTree
 from GlobalScope.texture import Texture
@@ -21,6 +21,7 @@ class Godot:
         self.__icon: Texture = Texture("icon.png")
         self.__background_colour: Color = Color("grey")
         self.__main_scene: Node = None
+        self.__fps = 60
     
     
     def init(self):
@@ -55,6 +56,11 @@ class Godot:
         self.__background_colour = Color(color)
     
     
+    def set_fps(self, frames_per_second: int):
+        """Sets how fast the game runs"""
+        self.__fps = frames_per_second
+    
+    
     def set_main_scene(self, scene: Node):
         """Sets the main scene"""
         if scene.owner != scene:
@@ -69,40 +75,6 @@ class Godot:
     def get_window_size(self) -> Vector2:
         """Returns the window/screen size as a vector2 object"""
         return self.__window_size
-    
-    
-    def run(self):
-        """Run the main loop"""
-        if self.__main_scene == None:
-            printErr("No Main Scene Set", "GodotError" )
-        
-        else:
-            SceneTree.change_current_scene(self.__main_scene)
-            
-        while self.__running:
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    self.__running = False
-                
-                if event.type == KEYDOWN:
-                    pass
-            
-            self.__screen.fill(self.__background_colour)
-            
-            SceneTree._process()
-
-            pygame.display.flip()
-            
-        pygame.quit()
-
-
-    # Disabled for now
-    # def do_shortcut(self, event: pygame.Event):
-    #     """Find the key/mod combination in the dictionary and execute cmd."""
-    #     key = event.key
-    #     modifier =  event.mod
-    #     if (key, modifier) in self.shortcuts:
-    #         exec(self.shortcuts[key, modifier])
     
     
     def toggle_fullscreen(self):
@@ -121,3 +93,46 @@ class Godot:
         """Toggle between frame and no-frame window."""
         self.__flags = NOFRAME
         pygame.display.set_mode(self.__window_size, self.__flags)
+    
+    
+    def run(self):
+        """Run the main loop"""
+        if self.__main_scene == None:
+            printErr("No Main Scene Set", "GodotError" )
+        
+        else:
+            SceneTree.change_current_scene(self.__main_scene)
+        
+        last_time: float = time()
+        new_time: float 
+        delta: float
+        clock = pygame.Clock()
+        while self.__running:
+            clock.tick(self.__fps)
+            new_time = time()
+            delta = (new_time - last_time) * 10
+            last_time = time()
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    self.__running = False
+                
+                if event.type == KEYDOWN:
+                    pass
+            
+            self.__screen.fill(self.__background_colour)
+            
+            SceneTree._process(delta)
+
+            pygame.display.flip()
+            
+        pygame.quit()
+
+
+    # Disabled for now
+    # def do_shortcut(self, event: pygame.Event):
+    #     """Find the key/mod combination in the dictionary and execute cmd."""
+    #     key = event.key
+    #     modifier =  event.mod
+    #     if (key, modifier) in self.shortcuts:
+    #         exec(self.shortcuts[key, modifier])
+

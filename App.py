@@ -8,7 +8,6 @@ Godot.set_window_size(Vector2(500, 400))
 Godot.set_background_color("grey")
 
 
-
 class Player(Node):
     def __init__(self) -> None:
         super().__init__()
@@ -19,14 +18,24 @@ class Player(Node):
         print(f"Attack: {damage}")
 
 
-class World(Node):
+class Level1(Node):
     def __init__(self) -> None:
         super().__init__()
+        self.name = "Level1"
         player = Player.new()
         self.add_node(player)
+        time: float = 0.0
         
-world_instance = World.new()
-Scene(world_instance)
+    
+class Level2(Node):
+    def __init__(self) -> None:
+        super().__init__()
+        self.name = "Level2"
+        player = Player.new()
+        self.add_node(player)
+
+
+world_instance = Scene(Level1.new())
 
 def main():
     Godot.set_main_scene(world_instance)

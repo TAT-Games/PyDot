@@ -1,9 +1,6 @@
-from os import remove
 import sys; sys.path.append(".")
 
-# from GlobalScope.scene import Scene
 from GlobalScope.object import Object
-
 
 
 class Node(Object):
@@ -15,6 +12,7 @@ class Node(Object):
         self.name = "Node"
         self.__parent: Node = None
         self.owner: Node = None
+        self.__is_scene: bool = False
         
     
     def _enter_tree(self):
@@ -55,14 +53,13 @@ class Node(Object):
     
     def _physics_process(self, delta: float):
         """Called every physics frame"""
-        print(f"{self.name}: Physics Process")
+        print(f"{self.name}: Physics Process, {delta}")
         children = self.get_children()
         for node in children:
             if node in self.__children:
                 node._physics_process(delta)
         
     
-
     def add_node(self, node: 'Node'):
         """Adds to children"""
         if node.name in self.__children and node != self.__children[node.name]:
@@ -84,7 +81,7 @@ class Node(Object):
             node._exit_tree()
     
     
-    def get_node(self, node_name: str):
+    def get_node(self, node_name: str) -> 'Node':
         """Used to get a node from the __children"""
         children = self.get_children()
         if node_name in children:
@@ -94,7 +91,7 @@ class Node(Object):
             return None
 
 
-    def get_children(self):
+    def get_children(self) -> list:
         """Returns this node's children """
         children: list = []
         for node in self.__children.values():
@@ -103,12 +100,13 @@ class Node(Object):
         return children
     
     
-    def get_parent(self):
+    def get_parent(self) -> 'Node':
         """Gets the node's parent"""
         return self.__parent
     
     
     def queue_free(self):
+        """Clears all possible refs to node"""
         self.__parent = None
         children = self.get_children()
         for node in children:
