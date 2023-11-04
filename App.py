@@ -36,6 +36,8 @@ class Level2(Node):
         player.name = "Player 2"
         self.add_node(player)
         print(self.get_child(0))
+        self.set_process(False)
+        self.set_physics_process(False)
         
 
 

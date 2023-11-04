@@ -12,6 +12,8 @@ class Node(Object):
         self.__children: dict = {}
         self.__parent: Node = None
         self.__is_scene: bool = False
+        self.__can_process: bool = True
+        self.__can_physics_process: bool = True
         self.owner: Node = None
         self.name = "Node"
         
@@ -45,6 +47,9 @@ class Node(Object):
     
     def _process(self, delta: float):
         """Called every process frame"""
+        if not self.__can_process:
+            return
+        
         print(f"{self.name}: Process")
         children = self.get_children()
         for node in children:
@@ -53,12 +58,25 @@ class Node(Object):
     
     def _physics_process(self, delta: float):
         """Called every physics frame"""
+        if not self.__can_physics_process:
+            return
+        
         print(f"{self.name}: Physics Process, {delta}")
         children = self.get_children()
         for node in children:
             node._physics_process(delta)
+       
         
-    
+    def set_process(self, value: bool) -> None:
+        """Enables or disables this node's process call with boolean value"""
+        self.__can_process = value
+     
+        
+    def set_physics_process(self, value: bool) -> None:
+        """Enables or disables this node's physics process call with boolean value"""
+        self.__can_physics_process = value
+        
+
     def add_node(self, node: 'Node'):
         """Adds to children"""
         if node.name in self.__children and node != self.__children[node.name]:
@@ -71,7 +89,7 @@ class Node(Object):
             node._enter_tree()
     
     
-    def remove_node(self, node: 'Node'):
+    def remove_node(self, node: 'Node') -> None:
         """Remove node from children"""
         self.__children.pop(node.name)
         node.__parent = None
