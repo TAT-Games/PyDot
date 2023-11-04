@@ -1,3 +1,4 @@
+from MyLib import *
 from GlobalScope import *
 
 Godot.init()
