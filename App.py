@@ -23,6 +23,7 @@ class Level1(Node):
         super().__init__()
         self.name = "Level1"
         player = Player.new()
+        player.name = "Player 1"
         self.add_node(player)
         time: float = 0.0
         
@@ -35,7 +36,8 @@ class Level2(Node):
         self.add_node(player)
 
 
-world_instance = Scene(Level1.new())
+world_instance = Level1.new().to_scene()
+
 
 def main():
     Godot.set_main_scene(world_instance)

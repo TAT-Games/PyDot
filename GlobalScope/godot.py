@@ -63,7 +63,7 @@ class Godot:
     
     def set_main_scene(self, scene: Node):
         """Sets the main scene"""
-        if scene.owner == scene and scene.__is_scene:
+        if scene.is_scene():
             self.__main_scene = scene
 
         else:

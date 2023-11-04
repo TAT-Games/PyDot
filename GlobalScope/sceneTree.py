@@ -19,8 +19,9 @@ class SceneTree:
     
     def change_current_scene(self, scene: 'Node'):
         """Changes the current scene"""
-        if scene.owner == scene and scene.__is_scene:
-            self.__current_scene._exit_tree()
+        if scene.is_scene():
+            if self.__current_scene != None:
+                self.__current_scene._exit_tree()
             self.__current_scene = scene
             self.__current_scene._enter_tree()
         

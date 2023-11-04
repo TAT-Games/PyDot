@@ -9,10 +9,10 @@ class Node(Object):
         """Initializes the Node"""
         super().__init__()
         self.__children: dict = {}
-        self.name = "Node"
         self.__parent: Node = None
-        self.owner: Node = None
         self.__is_scene: bool = False
+        self.owner: Node = None
+        self.name = "Node"
         
     
     def _enter_tree(self):
@@ -105,6 +105,22 @@ class Node(Object):
         return self.__parent
     
     
+    def to_scene(self) -> 'Node':
+        """Transforms a node to a scene"""
+        self.owner = self
+        self.__is_scene = True
+        return self
+        
+        
+    def is_scene(self) -> bool:
+        """Returns a bool telling whether node is a scene"""
+        if self.owner == None:
+            return False
+        
+        else:
+            return self.__is_scene and self.owner == self
+    
+
     def queue_free(self):
         """Clears all possible refs to node"""
         self.__parent = None
