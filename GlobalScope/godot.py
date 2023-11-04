@@ -7,7 +7,7 @@ from time import time
 
 from GlobalScope.node import Node
 from GlobalScope.functions import Color, printErr
-from GlobalScope.sceneTree import SceneTree
+from GlobalScope.sceneTree import SceneTree as _st
 from GlobalScope.texture import Texture
 
 
@@ -75,6 +75,11 @@ class Godot:
         return self.__window_size
     
     
+    def get_tree() -> _st:
+        """Gets the SceneTree"""
+        return _st
+    
+    
     def toggle_fullscreen(self):
         """Toggle between full screen and widowed screen."""
         self.__flags = FULLSCREEN
@@ -99,7 +104,7 @@ class Godot:
             printErr("No Main Scene Set", "GodotError" )
         
         else:
-            SceneTree.change_current_scene(self.__main_scene)
+            _st.change_current_scene(self.__main_scene)
         
         last_time: float = time()
         new_time: float 
@@ -119,7 +124,7 @@ class Godot:
             
             self.__screen.fill(self.__background_colour)
             
-            SceneTree._process(delta)
+            _st._process(delta)
 
             pygame.display.flip()
             

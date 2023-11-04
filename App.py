@@ -26,6 +26,7 @@ class Level1(Node):
         player.name = "Player 1"
         self.add_node(player)
         time: float = 0.0
+       
         
     
 class Level2(Node):
@@ -33,6 +34,7 @@ class Level2(Node):
         super().__init__()
         self.name = "Level2"
         player = Player.new()
+        player.name = "Player 2"
         self.add_node(player)
 
 
