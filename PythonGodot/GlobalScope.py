@@ -13,13 +13,13 @@ Null: None = None # SIDE EFFECT: Deleting or removing this variable will affect 
 # FUNCTIONS
 def printErr(text: str, ErrorType: str = "ERROR"):
     """Print an error to the terminal"""
-    __dashes: str = "-" * ((len(text) // 2) - (len(ErrorType) // 2))
-    print(f"\n{__dashes}ERROR{__dashes}\n{text}")
+    print(f"{ErrorType}: {text}")
     quit()
 
 
 # OBJECTS
 class Object:
+    """A base class for all objects in the game"""
     def __init__(self) -> None:
         pass
 
@@ -29,11 +29,10 @@ class Object:
 
 
 class Texture(Object):
+    """A base class for textures used in the game"""
     def __init__(self, filepath: str):
-        """A base class for textures used in the game"""
         self.data =  pygame.image.load(filepath)
         
-      
    
     def get_data(self) -> pygame.Surface:
         """Returns the image data as a pygame surface"""
@@ -41,10 +40,11 @@ class Texture(Object):
 
 
 class Node(Object):
+    """A base class for all nodes"""
     def __init__(self) -> None:
         """Initializes the Node"""
         super().__init__()
-        self.children: dict = {}
+        self.__children: dict = {}
         self.name = "Node"
         self.__parent: Node = None
         
@@ -52,10 +52,11 @@ class Node(Object):
     def _enter_tree(self):
         """Called when the node enters the scene for the first time"""
         print(f"{self.name} is entering tree")
-        for child in self.children:
+        children: list = self.get_children()
+        for child in children:
             child._enter_tree()
         
-        for child in self.children:
+        for child in children:
             child._ready()
         
         self._ready()
@@ -64,10 +65,9 @@ class Node(Object):
     def _exit_tree(self):
         """Called when the node is about to leave the scene"""
         print(f"{self.name} is exiting tree")
-        for child in self.children:
-            child._exiting_tree()
-        
-        self._exit_tree()
+        children = self.get_children()
+        for child in children:
+            child._exit_tree()
     
     
     def _ready(self):
@@ -79,43 +79,67 @@ class Node(Object):
     def _process(self, delta: float):
         """Called every process frame"""
         print(f"{self.name}: Process")
-    
-        for node in self.children.values():
-            node._process(delta)
+        children = self.get_children()
+        for node in children:
+            if node in self.__children:
+                node._process(delta)
 
     
     def _physics_process(self, delta: float):
         """Called every physics frame"""
         print(f"{self.name}: Physics Process")
-        for node in self.children.values():
-            node._physics_process(delta)
+        children = self.get_children()
+        for node in children:
+            if node in self.__children:
+                node._physics_process(delta)
         
     
     def get_node(self, node_name: str):
-        """Used to get a node from the children"""
-        if node_name in self.children:
-            return self.children[node_name]
+        """Used to get a node from the __children"""
+        children = self.get_children()
+        if node_name in children:
+            return self.__children[node_name]
         
         else:
             return None
-
-
-    def add_node(self, node: 'Node'):
-        """Adds a node to this Node's Children"""
-        if node.name in self.children and node != self.children[node.name]:
-            node.name += str(len(self.children) - 1)
-            
-        self.children[node.name] = node
-        node.__parent = self
-    
-    
-    def queue_free(self):
-        del self
     
     
     def get_parent(self):
         """Gets the node's parent"""
         return self.__parent
+
+
+    def get_children(self):
+        """Returns this node's children """
+        children: list = []
+        for node in self.__children.values():
+            children.append(node)
+        
+        return children
+    
+    
+    def add_node(self, node: 'Node'):
+        """Adds to children"""
+        if node.name in self.__children and node != self.__children[node.name]:
+            node.name += str(len(self.__children) - 1)
+            
+        self.__children[node.name] = node
+        node.__parent = self
+        node._enter_tree()
+    
+    
+    def remove_node(self, node: 'Node'):
+        """Remove node from children"""
+        self.__children.pop(node.name)
+        node.__parent = None
+        node._exit_tree()
+    
+    
+    def queue_free(self):
+        self.__parent = None
+        children = self.get_children()
+        for node in children:
+            node.queue_free()
 
 
 class Scene(Node):
