@@ -12,7 +12,7 @@ class Player(Node):
         self.name = "Player"
 
 
-    def attack(self, damage: int):
+    def attack(self, damage: int) -> None:
         print(f"Attack: {damage}")
 
  

@@ -6,6 +6,16 @@ from MyLib import *
 
 # enums
 
+# VARIABLES
+Null: None = None # SIDE EFFECT: Deleting or removing this variable will affect the whole project
+
+
+# FUNCTIONS
+def printErr(text: str, ErrorType: str = "ERROR"):
+    """Print an error to the terminal"""
+    __dashes: str = "-" * ((len(text) // 2) - (len(ErrorType) // 2))
+    print(f"\n{__dashes}ERROR{__dashes}\n{text}")
+    quit()
 
 
 # OBJECTS
@@ -237,10 +247,7 @@ class Godot:
         pygame.display.set_mode(self.__window_size, self.__flags)
 
 
-def printErr(text: str, ErrorType: str = "ERROR"):
-    __dashes: str = "-" * ((len(text) // 2) - (len(ErrorType) // 2))
-    print(f"\n{__dashes}ERROR{__dashes}\n{text}")
-    quit()
+
     
 
 def main():
