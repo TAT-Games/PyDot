@@ -31,7 +31,7 @@ class Level1(Node):
         self.name = "Level1"
         player = Player.new()
         player.name = "Player 1"
-        self.add_node(player)
+        self.add_child(player)
         time: float = 0.0
        
         
@@ -41,7 +41,7 @@ class Level2(Node):
         self.name = "Level2"
         player = Player.new()
         player.name = "Player 2"
-        self.add_node(player)
+        self.add_child(player)
         # print(self.get_child(0))
         # self.set_process(False)
         self.set_physics_process(False)

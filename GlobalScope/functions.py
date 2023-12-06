@@ -1,5 +1,5 @@
 from pygame import Color
-from inspect import currentframe, stack, getmodule
+from inspect import currentframe, stack
 
 def printErr(error: str, ErrorType: str = "ERROR", help: str = ""):
     """Print an error to the terminal"""

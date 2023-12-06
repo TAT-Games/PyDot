@@ -77,7 +77,7 @@ class Node(Object):
         self.__can_physics_process = value
         
 
-    def add_node(self, node: 'Node'):
+    def add_child(self, node: 'Node'):
         """Adds to children"""
         if node.name in self.__children and node != self.__children[node.name]:
             node.name += str(len(self.__children) - 1)
@@ -89,7 +89,7 @@ class Node(Object):
             node._enter_tree()
     
     
-    def remove_node(self, node: 'Node') -> None:
+    def remove_child(self, node: 'Node') -> None:
         """Remove node from children"""
         self.__children.pop(node.name)
         node.__parent = None
@@ -152,4 +152,4 @@ class Node(Object):
         self.__parent = None
         children = self.get_children()
         for node in children:
-            self.remove_node(node)
+            self.remove_child(node)
