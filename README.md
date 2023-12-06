@@ -7,7 +7,6 @@
  - [x] SceneTree
  - [x] MainLoop/Godot
  - [ ] Game Input: Input Event
- -- [ ] Input Event
  - [ ] Node: Pause, Draw
  - [ ] Node2D: Rotation, Position
  - [ ] Sprite2D: Pivot Point
