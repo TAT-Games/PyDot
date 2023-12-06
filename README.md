@@ -1,8 +1,8 @@
 # Py-Dot
  A Re-Make Of Godot In Python For Low-End PC's
 
-## For Developers
- Tasks And Objects To Design
+### For Developers
+ **Tasks And Objects To Design**
  - [x] Texture
  - [x] SceneTree
  - [x] MainLoop/Godot
