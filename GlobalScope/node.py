@@ -11,7 +11,6 @@ class Node(Object):
         super().__init__()
         self.__children: dict = {}
         self.__parent: Node = None
-        self.__is_scene: bool = False
         self.__can_process: bool = True
         self.__can_physics_process: bool = True
         self.owner: Node = None
@@ -20,7 +19,7 @@ class Node(Object):
     
     def _enter_tree(self):
         """Called when the node enters the scene for the first time"""
-        print(f"{self.name} is entering tree")
+        # print(f"{self.name} is entering tree")
         children: list = self.get_children()
         for child in children:
             child.owner = self.owner
@@ -34,7 +33,7 @@ class Node(Object):
     
     def _exit_tree(self):
         """Called when the node is about to leave the scene"""
-        print(f"{self.name} is exiting tree")
+        # print(f"{self.name} is exiting tree")
         children = self.get_children()
         for child in children:
             child._exit_tree()
@@ -129,23 +128,7 @@ class Node(Object):
     def get_parent(self) -> 'Node':
         """Gets the node's parent"""
         return self.__parent
-    
-    
-    def to_scene(self) -> 'Node':
-        """Transforms a node to a scene"""
-        self.owner = self
-        self.__is_scene = True
-        return self
-        
-        
-    def is_scene(self) -> bool:
-        """Returns a bool telling whether node is a scene"""
-        if self.owner == None:
-            return False
-        
-        else:
-            return self.__is_scene and self.owner == self
-    
+
 
     def queue_free(self):
         """Clears all possible refs to node"""

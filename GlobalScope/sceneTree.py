@@ -33,11 +33,7 @@ class SceneTree:
     
     def change_current_scene(self, scene: 'Node'):
         """Changes the current scene"""
-        if scene.is_scene():
-            if self.__current_scene != None:
-                self.__current_scene._exit_tree()
-            self.__current_scene = scene
-            self.__current_scene._enter_tree()
-        
-        else:
-            printErr("Invalid Scene", "SceneTree Error", "Use the Scene() function to transform a node to a scene")
+        if self.__current_scene != None:
+            self.__current_scene._exit_tree()
+        self.__current_scene = scene
+        self.__current_scene._enter_tree()  

@@ -42,12 +42,11 @@ class Level2(Node):
         player = Player.new()
         player.name = "Player 2"
         self.add_child(player)
-        # print(self.get_child(0))
-        # self.set_process(False)
+        self.set_process(False)
         self.set_physics_process(False)
         
 
-world_instance = Level2.new().to_scene()
+world_instance = Level2()
 
 
 def main():
