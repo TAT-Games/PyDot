@@ -1,7 +1,7 @@
 from pygame import Color
 from inspect import currentframe, stack
 
-def printErr(error: str, ErrorType: str = "ERROR", help: str = ""):
+def printErr(error: str, ErrorType: str = "ERROR", help: str = "", print_source: bool = True):
     """Print an error to the terminal"""
     stack_list: list = stack()
     caller_line = currentframe().f_back.f_lineno
@@ -17,7 +17,9 @@ def printErr(error: str, ErrorType: str = "ERROR", help: str = ""):
     
     
     print(f"\n{ErrorType}: {error}")
-    print(f"Source: Line {line} in \"{filename}\"")
+    if print_source:
+        print(f"Source: Line {line} in \"{filename}\"")
+        
     if help != "":
         print(f"Help: {help}")
     
