@@ -1,5 +1,5 @@
 # Py-Dot
- A Re-Make Of Godot In Python For Low-End PC's
+ A Re-Make Of Godot In Python For Low-End PC's And Python Programmers
 
 ### For Developers
  **Tasks And Objects To Design**
@@ -27,5 +27,3 @@
  - [ ] Camera2D
  - [ ] Tileset
  - [ ] Networking
-
-
