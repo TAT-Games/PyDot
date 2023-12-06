@@ -42,15 +42,8 @@ class Level2(Node):
         player = Player.new()
         player.name = "Player 2"
         self.add_child(player)
-        
-        # print(self.get_child(2))
-        # printErr("Saying something", "AnError", "Say that")
-        # self.set_process(False)
-        # self.set_physics_process(False)
-        
 
 world_instance = Level2()
-# printErr("Saying something", "AnError", "Say that")
 
 def main():
     Godot.set_main_scene(world_instance)
