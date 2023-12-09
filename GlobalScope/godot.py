@@ -26,7 +26,6 @@ class Godot:
         self.__fps = 60
 
    
-    
     def init(self):
         """Initializes pygame and application"""
         pygame.init()
@@ -35,6 +34,7 @@ class Godot:
         self.set_window_size(self.__window_size, self.__flags)
         self.set_window_title(self.__window_title)
         self.set_window_icon(self.__icon)
+        
         
     def set_window_size(self, size: Vector2, __flags: int = 0):
         """Sets window/screen size."""
@@ -100,7 +100,7 @@ class Godot:
     def run(self):
         """Run the main loop"""
         if self.__main_scene == None:
-            printErr("No Main Scene Set", "GodotError" )
+            printErr("No Main Scene Set", "GodotError", print_source = False)
         
         else:
             _st.change_current_scene(self.__main_scene)
@@ -116,7 +116,7 @@ class Godot:
             delta = (new_time - last_time) * 10
             last_time = time()
             for event in pygame.event.get():
-                print(event)
+                # print(event)
                 if event.type == QUIT:
                     self.__running = False
                 

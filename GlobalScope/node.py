@@ -2,7 +2,7 @@ import sys; sys.path.append(".")
 
 from GlobalScope.functions import printErr
 from GlobalScope.object import Object
-
+from GlobalScope.constants import *
 
 class Node(Object):
     """A base class for all nodes"""
@@ -17,9 +17,15 @@ class Node(Object):
         self.name = "Node"
         
     
-    def _enter_tree(self):
+    def __del__(self) -> None:
+        self._notification(NOTIFICATION_PREDELETE)
+        self.queue_free()
+        
+    
+    def _enter_tree(self) -> None:
         """Called when the node enters the scene for the first time"""
         # print(f"{self.name} is entering tree")
+        self._notification(NOTIFICATION_ENTER_TREE)
         children: list = self.get_children()
         for child in children:
             child.owner = self.owner
@@ -39,6 +45,7 @@ class Node(Object):
     def _exit_tree(self):
         """Called when the node is about to leave the scene"""
         # print(f"{self.name} is exiting tree")
+        self._notification(NOTIFICATION_EXIT_TREE)
         children = self.get_children()
         for child in children:
             child._exit_tree()
@@ -51,6 +58,7 @@ class Node(Object):
     
     def _process(self, delta: float):
         """Called every process frame"""
+        self._notification(NOTIFICATION_PROCESS)
         if not self.__can_process:
             return
         
@@ -62,6 +70,7 @@ class Node(Object):
     
     def _physics_process(self, delta: float):
         """Called every physics frame"""
+        self._notification(NOTIFICATION_PHYSICS_PROCESS)
         if not self.__can_physics_process:
             return
         
@@ -88,6 +97,7 @@ class Node(Object):
             
         self.__children[node.name] = node
         node.__parent = self
+        node._notification(NOTIFICATION_PARENTED)
         if self.owner != None:
             node.owner = self.owner
             node._enter_tree()
@@ -97,6 +107,7 @@ class Node(Object):
         """Remove node from children"""
         self.__children.pop(node.name)
         node.__parent = None
+        node._notification(NOTIFICATION_UNPARENTED)
         if self.owner != None:
             node.owner = None
             node._exit_tree()
