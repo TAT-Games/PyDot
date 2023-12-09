@@ -1,0 +1,107 @@
+# Errors
+OK: int = 0
+FAILED: int = 1
+ERR_UNAVAILABLE: int = 2
+ERR_UNCONFIGURED: int = 3
+ERR_PARAMETER_RANGE_ERROR: int = 4
+ERR_OUT_OF_MEMORY: int = 5
+ERR_FILE_NOT_FOUND: int = 6
+ERR_FILE_BAD_DRIVE: int = 7
+ERR_FILE_BAD_PATH: int = 8
+ERR_FILE_NO_PERMISSION: int = 9
+ERR_FILE_CANT_OPEN: int = 10
+ERR_FILE_CANT_WRITE: int = 11
+ERR_FILE_CANT_READ: int = 12
+ERR_FILE_UNRECOGNIZED: int = 13
+ERR_FILE_CORRUPT: int = 14
+ERR_FILE_MISSING_DEPENDENCIES: int = 15
+ERR_FILE_EOF: int = 16
+ERR_CANT_OPEN: int = 17
+ERR_CANT_CREATE: int = 18
+ERR_QUERY_FAILED: int = 19
+
+# Alphabets Keys
+KEY_A: int = 20
+KEY_B: int = 21
+KEY_C: int = 22
+KEY_D: int = 23
+KEY_B: int = 24
+KEY_E: int = 25
+KEY_F: int = 26
+KEY_G: int = 27
+KEY_H: int = 28
+KEY_I: int = 29
+KEY_J: int = 30
+KEY_K: int = 31
+KEY_L: int = 32
+KEY_M: int = 33
+KEY_N: int = 34
+KEY_O: int = 35
+KEY_P: int = 36
+KEY_Q: int = 37
+KEY_R: int = 38
+KEY_S: int = 39
+KEY_T: int = 40
+KEY_U: int = 41
+KEY_V: int = 42
+KEY_W: int = 43
+KEY_X: int = 44
+KEY_Y: int = 45
+KEY_Z: int = 46
+
+# Number Keys
+KEY_0: int = 47
+KEY_1: int = 48
+KEY_2: int = 49
+KEY_3: int = 50
+KEY_4: int = 51
+KEY_5: int = 52
+KEY_6: int = 53
+KEY_7: int = 54
+KEY_8: int = 55
+KEY_9: int = 56
+
+# Modifier Keys
+KEY_SHIFT: int = 57
+KEY_CONTROL: int = 58
+KEY_META: int = 59
+KEY_ALT: int = 60
+
+# Arrow Keys
+KEY_UP: int = 61
+KEY_DOWN: int = 62
+KEY_LEFT: int = 63
+KEY_RIGHT: int = 64
+
+# Other Keys
+KEY_TAB: int = 65
+KEY_CAPS_LOCK: int = 66
+KEY_ESCAPE: int = 67
+KEY_PAGE_UP: int = 68
+KEY_PAGE_DOWN: int = 69
+KEY_HOME: int = 70
+KEY_END: int = 71
+KEY_SPACE: int = 72
+KEY_BACKSPACE: int = 73
+KEY_DELETE: int = 74
+KEY_INSERT: int = 75
+
+# Mouse Buttons
+BUTTON_LEFT: int = 76
+BUTTON_RIGHT: int = 77
+BUTTON_MIDDLE: int = 78
+BUTTON_WHEEL_UP: int = 79
+BUTTON_WHEEL_DOWN: int = 80
+
+# Notifications
+NOTIFICATION_WM_FOCUS_IN: int = 81
+NOTIFICATION_WM_FOCUS_OUT: int = 82
+NOTIFICATION_WM_QUIT_REQUEST: int = 83
+NOTIFICATION_ENTER_TREE: int = 84
+NOTIFICATION_EXIT_TREE: int = 85
+NOTIFICATION_READY: int = 86
+NOTIFICATION_PROCESS: int = 87
+NOTIFICATION_PHYSICS_PROCESS: int = 88
+NOTIFICATION_PARENTED: int = 89
+NOTIFICATION_UNPARENTED: int = 90
+NOTIFICATION_PREDELETE: int = 91

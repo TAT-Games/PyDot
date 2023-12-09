@@ -1,5 +1,6 @@
 from pygame.locals import *
 from .functions import *
+from .constants import *
 from .variables import *
 from .godot import Godot
 from .node import Node

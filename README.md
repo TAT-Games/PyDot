@@ -6,6 +6,8 @@
  - [x] Texture
  - [x] SceneTree
  - [x] MainLoop/Godot
+ - [x] Constants
+ - [ ] Notifications
  - [ ] Game Input: Input Event
  - [ ] Node: Pause, Draw
  - [ ] Node2D: Rotation, Position

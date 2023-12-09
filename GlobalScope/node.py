@@ -31,6 +31,11 @@ class Node(Object):
         self._ready()
     
     
+    def _notification(self, what: int):
+        """Used to get and process raw notifications"""
+        pass
+        
+    
     def _exit_tree(self):
         """Called when the node is about to leave the scene"""
         # print(f"{self.name} is exiting tree")
