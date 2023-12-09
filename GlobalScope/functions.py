@@ -17,3 +17,4 @@ def printErr(error: str, ErrorType: str = "ERROR", help: str = "", print_source:
     
     print("\n")
     quit()
+

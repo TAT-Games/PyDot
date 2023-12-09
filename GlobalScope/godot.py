@@ -24,7 +24,8 @@ class Godot:
         self.__background_colour: Color = Color("grey")
         self.__main_scene: Node = None
         self.__fps = 60
-    
+
+   
     
     def init(self):
         """Initializes pygame and application"""
@@ -81,7 +82,7 @@ class Godot:
     def toggle_fullscreen(self):
         """Toggle between full screen and widowed screen."""
         self.__flags = FULLSCREEN
-        self.set_screen_size(Vector2.ZERO)
+        self.set_window_size(Vector2())
     
     
     def toggle_resizable(self):
@@ -115,6 +116,7 @@ class Godot:
             delta = (new_time - last_time) * 10
             last_time = time()
             for event in pygame.event.get():
+                print(event)
                 if event.type == QUIT:
                     self.__running = False
                 

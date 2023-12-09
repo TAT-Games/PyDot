@@ -1,4 +1,3 @@
-
 def singleton(cls):
     instances = {}
     
@@ -18,3 +17,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
