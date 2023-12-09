@@ -17,12 +17,19 @@ class Player(Node):
         print(f"Attack: {damage}")
     
     
-    def _process(self, delta: float):
+    def _process(self, delta: float) -> None:
         if Input.is_key_pressed(K_UP):
             print("Up Arrow pressed")
         
         if Input.is_mouse_button_pressed(BUTTON_LEFT):
             print("Mouse button pressed")
+    
+    def _notification(self, what: int):
+        if what == NOTIFICATION_PARENTED:
+            print("Parented")
+        
+        elif what == NOTIFICATION_UNPARENTED:
+            print("Unparented")
         
         
 class Level1(Node):
